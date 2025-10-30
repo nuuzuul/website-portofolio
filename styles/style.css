@@ -157,6 +157,11 @@ a:hover {
   display: flex;
   gap: 3rem;
 }
+@media screen and (max-width: 825px) {
+  .nav ul {
+    display: none;
+  }
+}
 
 .nav ul li a {
   font-weight: 500;

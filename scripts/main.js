@@ -1,25 +1,29 @@
-const initNavToggle = () => {
+// Toggle & responsive navigation
+const navSlide = () => {
   const burger = document.querySelector(".burger");
   const nav = document.querySelector("nav");
+  const overlay = document.querySelector(".nav-overlay");
 
-  if (!burger || !nav) return;
-
-  burger.addEventListener("click", () => {
+  const toggleMenu = () => {
     nav.classList.toggle("nav-active");
     burger.classList.toggle("toggle-burger");
-    document.body.classList.toggle("no-scroll");
-  });
+    overlay.classList.toggle("active");
 
-  document.addEventListener("click", (e) => {
-    if (
-      nav.classList.contains("nav-active") &&
-      !nav.contains(e.target) &&
-      !burger.contains(e.target)
-    ) {
-      nav.classList.remove("nav-active");
-      burger.classList.remove("toggle-burger");
+    if (nav.classList.contains("nav-active")) {
+      document.body.classList.add("no-scroll");
+    } else {
       document.body.classList.remove("no-scroll");
     }
-  });
+  };
+
+  burger.addEventListener("click", toggleMenu);
+  overlay.addEventListener("click", toggleMenu);
 };
-initNavToggle();
+navSlide();
+
+// Clear form after send message
+window.onbeforeunload = () => {
+  for (const form of document.getElementsByTagName("form")) {
+    form.reset();
+  }
+};

@@ -142,37 +142,66 @@ a:hover {
    NAVBAR
 ================================== */
 .nav {
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
-  padding: 2rem 0;
-  position: sticky;
-  top: 0;
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(10px);
-  z-index: 10;
+  align-items: center;
+
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(1200px, 90%);
+  min-height: 72px;
+  padding: 0 1.5rem;
+
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(230, 230, 230, 0.8);
+  border-radius: 18px;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+
+  z-index: 999;
+}
+
+.logo h4 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--textDark);
+}
+
+.nav nav {
+  display: flex;
+  align-items: center;
 }
 
 .nav ul {
   list-style: none;
   display: flex;
-  gap: 3rem;
-}
-@media screen and (max-width: 825px) {
-  .nav ul {
-    display: none;
-  }
+  align-items: center;
+  gap: 2.3rem;
+  margin: 0;
+  padding: 0;
 }
 
 .nav ul li a {
   font-weight: 500;
+  color: var(--textDark);
   position: relative;
+}
+
+.nav ul li a:hover {
+  color: var(--accent);
 }
 
 .nav ul li a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: -6px;
   height: 2px;
   width: 0%;
   background: var(--accent);
@@ -183,6 +212,9 @@ a:hover {
   width: 100%;
 }
 
+header {
+  padding-top: 110px;
+}
 /* ===============================
    BURGER MENU
 ================================== */
@@ -238,14 +270,27 @@ a:hover {
 /* ===============================
    PORTOFOLIO
 ================================== */
+/* ===============================
+   PORTOFOLIO
+================================== */
 #portofolios {
   padding: var(--sectionPadding);
 }
 
+.portofolios .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 atas, 3 bawah */
+  gap: 3rem;
+  align-items: stretch;
+}
+
 .portofolio {
+  background: #fff;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -272,12 +317,15 @@ a:hover {
 
 .portofolio-info {
   padding: 2rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .portofolio-title {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
 }
 
@@ -286,17 +334,38 @@ a:hover {
   font-size: 1.05rem;
 }
 
-.portofolio-title a svg {
-  transition: 0.2s ease-in-out;
+.portofolio-link {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  background: var(--bgAccentLight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  transition: 0.25s ease;
 }
 
-.portofolio-title a svg:hover {
-  fill: var(--accent);
+.portofolio-link svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--accent);
+  transition: 0.25s ease;
+}
+
+.portofolio-link:hover {
+  background: var(--accent);
+}
+
+.portofolio-link:hover svg {
+  stroke: #fff;
 }
 
 .portofolio-tags {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.7rem;
   margin: 1rem 0;
 }
 
@@ -306,6 +375,14 @@ a:hover {
   font-weight: 500;
   border-radius: 20px;
   padding: .35rem 1rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.portofolio-info p {
+  font-size: 0.95rem;
+  line-height: 1.7rem;
+  margin-bottom: 0.6rem;
 }
 
 /* ===============================
@@ -315,7 +392,9 @@ a:hover {
   display: flex;
   gap: 1rem;
 }
-
+#experience {
+  padding: 5rem 0 6rem;
+}
 .education .line {
   padding: 0 0.7rem;
 }
@@ -417,7 +496,43 @@ a:hover {
   background: var(--accentHover);
 }
 
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #000 !important;
+}
+
+.contact-icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: #000 !important;
+}
+
+.contact-icon svg path {
+  fill: #000 !important;
+}
+
 .contact-item h4 {
+  margin: 0;
   color: var(--textDark);
   font-weight: 600;
 }
@@ -440,7 +555,7 @@ footer {
 }
 
 .footer-icons svg {
-  fill: #3e3f40;
+  fill: #000;
   transition: 0.2s;
 }
 
